@@ -16,8 +16,9 @@ func _ready():
 		transform.origin = init_pos
 		rigid_body.set_global_transform(transform)
 
-	pass # Replace with function body.
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if rigid_body.get_transform().origin.y < -10.0:
+		var parent = get_parent()
+		parent.remove_child(self)
+		self.free()
